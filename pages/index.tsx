@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import React, { useState, useEffect } from "react";
-import goodsList from "./goods/goodsList";
+import React, { useState, useEffect, useMemo } from "react";
+import goodsList from "../components/goodsList";
 import styled from "styled-components";
 
 const Home: NextPage = () => {
@@ -26,13 +26,24 @@ const Home: NextPage = () => {
   /*
    * 一時的に保持するArray・変数を定義
    */
-  let costPfArr = new Array<[string, number, number, number]>();
   // 品物を選択していく際のオブジェクトを保持する配列
   let bagArr = new Array<[string, number, number, number]>();
   // 品物を選択していく際の重さを保持する配列
   let bagWArr: number = 0;
   // 品物を選択していく際の価値を保持する配列
   let bagVArr: number = 0;
+
+  // 初期処理
+  useMemo(() => {
+    /* 品物リストから[1重さ当たりの価値](コストパフォーマンス)を計算した項目をGoods配列に追加。
+     *  コストパフォーマンス項目を加えた新たな配列[costPfArr]を作成し、useStateに保持。
+     */
+    let costPfArr = new Array<[string, number, number, number]>();
+    goodsList.forEach((g) =>
+      costPfArr.push([g.name, g.weight, g.value, g.value / g.weight])
+    );
+    setCostPf(costPfArr);
+  }, []);
 
   // 最大価値の総和を計算するメソッド
   const calc = () => {
@@ -84,18 +95,6 @@ const Home: NextPage = () => {
     // 残重量
     setAmountWeight(tmpTotalWeight);
   };
-
-  // 初期処理
-  useEffect(() => {
-    /* 品物リストから[1重さ当たりの価値](コストパフォーマンス)を計算した項目をGoods配列に追加。
-     *  コストパフォーマンス項目を加えた新たな配列[costPfArr]を作成し、useStateに保持。
-     */
-    goodsList.forEach((g) =>
-      costPfArr.push([g.name, g.weight, g.value, g.value / g.weight])
-    );
-    setCostPf(costPfArr);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Wrapper className="App">
