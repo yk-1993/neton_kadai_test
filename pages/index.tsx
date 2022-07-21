@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React, { useState, useEffect } from "react";
-import { goodsList } from "./goods/goodsList";
+import goodsList from "./goods/goodsList";
 import styled from "styled-components";
 
 const Home: NextPage = () => {

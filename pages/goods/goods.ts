@@ -1,4 +1,4 @@
-export type goods = {
+type goods = {
   // 名前
   name: string;
   // 重さ
@@ -6,3 +6,5 @@ export type goods = {
   //　価値
   value: number;
 };
+
+export default goods;

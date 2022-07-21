@@ -1,5 +1,5 @@
-import { goods } from "./goods";
-export const goodsList: goods[] = [
+import goods from "./goods";
+const goodsList: goods[] = [
   {
     name: "りんご",
     weight: 3,
@@ -106,3 +106,4 @@ export const goodsList: goods[] = [
     value: 1500,
   },
 ];
+export default goodsList;
