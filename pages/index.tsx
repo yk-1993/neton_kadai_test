@@ -93,8 +93,8 @@ const Home: NextPage = () => {
     goodsList.forEach((g) =>
       costPfArr.push([g.name, g.weight, g.value, g.value / g.weight])
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     setCostPf(costPfArr);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
