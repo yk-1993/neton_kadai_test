@@ -102,14 +102,23 @@ const Home: NextPage = () => {
       <label>
         最大重量（W）を入力:
         <input
-          type="text"
+          data-testid="input-w"
+          type="number"
           value={maxWeight}
           onChange={(event) => setMaxWeight(Number(event.target.value))}
         />
       </label>
-      <Button onClick={() => calc()}>計算</Button>
-      <p>選んだ品物の重さ(weight)の総和:{bagInWeight}</p>
-      <p>選んだ品物の価値(value)の総和:{bagInValue}</p>
+      <Button data-testid="button" onClick={() => calc()}>
+        計算
+      </Button>
+      <p>
+        選んだ品物の重さ(weight)の総和:
+        <span data-testid="bagInWeight">{bagInWeight}</span>
+      </p>
+      <p>
+        選んだ品物の価値(value)の総和:
+        <span data-testid="bagInValue">{bagInValue}</span>
+      </p>
       <p>残重量:{amountWeight}</p>
       <FlexBox>
         <div>
