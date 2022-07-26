@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import goodsList from "../components/goodsList";
 import styled from "styled-components";
 
@@ -114,27 +114,23 @@ const Home: NextPage = () => {
       <FlexBox>
         <div>
           <h4>品物リスト</h4>
-          {goodsList.map((goods) => (
-            <>
-              <UlStyled>
-                <li>品名:{goods.name}</li>
-                <li>重さ:{goods.weight}</li>
-                <li>価値:{goods.value}</li>
-              </UlStyled>
-            </>
+          {goodsList.map((goods, i) => (
+            <UlStyled key={i}>
+              <li>品名:{goods.name}</li>
+              <li>重さ:{goods.weight}</li>
+              <li>価値:{goods.value}</li>
+            </UlStyled>
           ))}
         </div>
         <div>
           <h4>選択した品物</h4>
           {bag &&
-            bag.map((goods) => (
-              <>
-                <UlStyledC>
-                  <li>品名:{goods[0]}</li>
-                  <li>重さ:{goods[1]}</li>
-                  <li>価値:{goods[2]}</li>
-                </UlStyledC>
-              </>
+            bag.map((goods, i) => (
+              <UlStyledC key={i}>
+                <li>品名:{goods[0]}</li>
+                <li>重さ:{goods[1]}</li>
+                <li>価値:{goods[2]}</li>
+              </UlStyledC>
             ))}
         </div>
       </FlexBox>
