@@ -124,7 +124,7 @@ const Home: NextPage = () => {
         <div>
           <h4>品物リスト</h4>
           {goodsList.map((goods, i) => (
-            <UlStyled key={i}>
+            <UlStyled key={i} data-testid="goodsList">
               <li>品名:{goods.name}</li>
               <li>重さ:{goods.weight}</li>
               <li>価値:{goods.value}</li>

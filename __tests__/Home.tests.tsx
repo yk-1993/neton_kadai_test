@@ -1,4 +1,11 @@
-import { render, screen, cleanup, getByTestId } from "@testing-library/react";
+import {
+  render,
+  screen,
+  cleanup,
+  getByTestId,
+  getAllByAltText,
+  getAllByTestId,
+} from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Home from "../pages/index";
 import userEvent from "@testing-library/user-event";
@@ -50,6 +57,16 @@ describe("Home component test.", () => {
     expect(getByTestId(container, "bagInValue").innerHTML).toBe("0");
   });
   // Test case4.
+  it("読み込んだ[品物リスト]が21件表示されているか.", async () => {
+    act(() => {
+      // レンダリング
+      render(<Home />);
+    });
+    const container = render(<Home />);
+    // 読み込んだ[品物リスト]が21件表示されているか
+    expect(getAllByTestId(container.container, "goodsList")).toHaveLength(21);
+  });
+  // Test case5.
   it("Wに100を入力し、[計算]ボタン押下後、重さの総和が99・価値の総和が2093で出力されるか.", async () => {
     act(() => {
       // レンダリング
